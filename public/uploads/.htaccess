@@ -1,0 +1,19 @@
+# Disable PHP execution inside the uploads directory
+<Files *.php>
+    Deny from all
+</Files>
+
+# Strip execution handlers for PHP scripts
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phps .pht
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .phps .pht
+
+# Deactivate PHP engine if running mod_php
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>

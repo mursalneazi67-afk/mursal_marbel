@@ -1,0 +1,31 @@
+# XAMPP / PHP Config & Database Secrets
+config/*.ini
+config/*.env
+.env
+.env.local
+
+# Temporary logs & scratch dirs
+*.log
+app/logs/*.log
+scratch/
+.gemini/
+brain/
+
+# Uploaded test files (exclude dynamic assets, preserve structure)
+public/uploads/products/*
+!public/uploads/products/.gitkeep
+public/uploads/gallery/*
+!public/uploads/gallery/.gitkeep
+
+# IDE specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS Junk
+.DS_Store
+Thumbs.db
