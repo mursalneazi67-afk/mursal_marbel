@@ -11,11 +11,8 @@ scratch/
 .gemini/
 brain/
 
-# Uploaded test files (exclude dynamic assets, preserve structure)
-public/uploads/products/*
-!public/uploads/products/.gitkeep
-public/uploads/gallery/*
-!public/uploads/gallery/.gitkeep
+# Uploaded images
+# Keep product and gallery images in GitHub
 
 # IDE specific files
 .idea/
