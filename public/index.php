@@ -13,28 +13,16 @@ define('APPROOT', dirname(__DIR__));
 
 // Global Exception & Error Logger
 set_exception_handler(function ($exception) {
-    $logDir = APPROOT . '/app/logs';
-    if (!is_dir($logDir)) {
-        @mkdir($logDir, 0755, true);
-    }
-    
-    $timestamp = date('[Y-m-d H:i:s]');
-    $logMessage = "{$timestamp} Uncaught Exception: " . $exception->getMessage() . "\n" .
-                "File: " . $exception->getFile() . " (Line: " . $exception->getLine() . ")\n" .
-                "Trace:\n" . $exception->getTraceAsString() . "\n" .
-                str_repeat('-', 80) . "\n";
-                
-    @error_log($logMessage, 3, $logDir . '/error.log');
-    
-    // Output friendly clean error page (no stack trace or DB details leaked)
-    http_response_code(500);
-    echo "<div style='font-family: sans-serif; padding: 3rem; text-align: center; max-width: 600px; margin: 5rem auto; border: 1px solid #ddd; border-radius: 8px;'>
-        <h2 style='color: #d9534f;'>⚠️ An Unexpected Error Occurred</h2>
-        <p style='color: #666; line-height: 1.6;'>We apologize for the inconvenience. A technical error was recorded, and our engineering team has been notified.</p>
-        <a href='" . (defined('URLROOT') ? URLROOT : '') . "/' style='display: inline-block; margin-top: 1.5rem; padding: 0.6rem 1.5rem; background: #333; color: #fff; text-decoration: none; border-radius: 4px;'>Return to Homepage &rarr;</a>
-    </div>";
+
+    echo "<pre>";
+    echo "ERROR: " . $exception->getMessage() . "\n\n";
+    echo "FILE: " . $exception->getFile() . "\n";
+    echo "LINE: " . $exception->getLine();
+    echo "</pre>";
+
     exit();
 });
+    $logDir = APPROOT . '/app/logs';
 
 // Start session storage with secure cookie attributes
 if (session_status() === PHP_SESSION_NONE) {

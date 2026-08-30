@@ -22,14 +22,14 @@ private $password = null;
 private $charset = 'utf8mb4';
 private function __construct() {
 
-    // Railway MySQL credentials
-    $this->host = getenv('MYSQLHOST');
-    $this->db_name = getenv('MYSQLDATABASE');
-    $this->username = getenv('MYSQLUSER');
-    $this->password = getenv('MYSQLPASSWORD');
+        $this->host = getenv('MYSQLHOST');
+        $this->db_name = getenv('MYSQLDATABASE');
+        $this->username = getenv('MYSQLUSER');
+        $this->password = getenv('MYSQLPASSWORD');
 
-    $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset={$this->charset}";
+    $port = getenv('MYSQLPORT');
 
+    $dsn = "mysql:host={$this->host};port={$port};dbname={$this->db_name};charset=utf8mb4";
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
