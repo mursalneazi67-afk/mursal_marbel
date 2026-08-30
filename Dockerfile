@@ -6,14 +6,10 @@ COPY . /var/www/html/
 
 RUN a2enmod rewrite
 
-# Remove all existing Apache MPM modules
-RUN rm -f /etc/apache2/mods-enabled/mpm_*.load \
-    && rm -f /etc/apache2/mods-enabled/mpm_*.conf
-
-# Enable only the prefork MPM
-RUN a2enmod mpm_prefork
+# Remove Apache MPM modules that may conflict
+RUN a2dismod mpm_event mpm_worker mpm_event 2>/dev/null || true
 
 RUN chown -R www-data:www-data /var/www/html
 
-# Railway supplies PORT when the container starts
-CMD ["sh", "-c", "sed -i 's/Listen .*/Listen ${PORT}/' /etc/apache2/ports.conf && sed -i 's/<VirtualHost \\*:[0-9]*>/<VirtualHost *:${PORT}>/' /etc/apache2/sites-available/000-default.conf && apache2-foreground"]
+# Railway provides PORT when the container starts
+CMD ["sh", "-c", "sed -i \"s/Listen 80/Listen ${PORT}/\" /etc/apache2/ports.conf && sed -i \"s/<VirtualHost \\*:80>/<VirtualHost *:${PORT}>/\" /etc/apache2/sites-available/000-default.conf && apache2-foreground"]
