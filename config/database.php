@@ -9,15 +9,27 @@ class Database {
     private $pdo;
     private $stmt;
     
-    // Connection Settings (Standard XAMPP / MySQL local defaults)
-    private $host = 'localhost';
-    private $db_name = 'mursal_marble';
-    private $username = 'root';
-    private $password = '';
-    private $charset = 'utf8mb4';
+ // Connection Settings (Railway MySQL)
 
-    private function __construct() {
-        $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset={$this->charset}";
+private $host = null;
+
+private $db_name = null;
+
+private $username = null;
+
+private $password = null;
+
+private $charset = 'utf8mb4';
+private function __construct() {
+
+    // Railway MySQL credentials
+    $this->host = getenv('MYSQLHOST');
+    $this->db_name = getenv('MYSQLDATABASE');
+    $this->username = getenv('MYSQLUSER');
+    $this->password = getenv('MYSQLPASSWORD');
+
+    $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset={$this->charset}";
+
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -35,8 +47,9 @@ class Database {
                 <hr>
                 <p><strong>Instructions:</strong></p>
                 <ol>
-                    <li>Make sure MySQL server is running in XAMPP / MariaDB.</li>
-                    <li>Create a database named <code>{$this->db_name}</code> in phpMyAdmin.</li>
+                <li>
+                    Make sure Railway MySQL service is running.</li>
+                    <li>Make sure the database has been imported correctly.</li>
                     <li>Import the SQL file located at <code>database/mursal_marble.sql</code>.</li>
                 </ol>
             </div>");
