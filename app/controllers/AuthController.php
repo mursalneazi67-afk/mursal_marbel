@@ -56,7 +56,6 @@ public function processRegister()
 
     if($result)
 {
-
     $_SESSION['flash_success'] = "Registration successful. Please login.";
 
     header("Location: " . URLROOT . "/login");

@@ -27,13 +27,10 @@ class User {
 
         $sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
 
-        $result = $this->db->query(
+    return $this->db->query(
     $sql,
     [$name, $email, $hashedPassword, $role]
 );
-
-var_dump($result);
-exit();
 
     } catch(PDOException $e) {
 
