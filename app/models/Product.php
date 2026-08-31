@@ -238,12 +238,8 @@ public function getVariants($productId)
 }
 public function getProductImages($product_id)
 {
-    $this->db->query(
-        "SELECT * FROM product_images WHERE product_id = :product_id"
-    );
+    $sql = "SELECT * FROM product_images WHERE product_id = ?";
 
-    $this->db->bind(':product_id', $product_id);
-
-    return $this->db->resultSet();
+    return $this->db->fetchAll($sql, [$product_id]);
 }
 }   
