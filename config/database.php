@@ -1,4 +1,4 @@
-    <?php
+<?php
 /**
  * Database Configuration & PDO Singleton Wrapper
  * Mursal Marble Application
