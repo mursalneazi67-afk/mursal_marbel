@@ -67,15 +67,21 @@ private function __construct() {
         return $this->pdo;
     }
 
-    // Helper method for prepared statements
-    public function query($sql, $params = [])
+   public function query($sql, $params = [])
 {
-    $this->stmt = $this->pdo->prepare($sql);
+    try {
 
-    if (!empty($params)) {
-        $this->stmt->execute($params);
+        $this->stmt = $this->pdo->prepare($sql);
+
+        return $this->stmt->execute($params);
+
+    } catch(PDOException $e) {
+
+        echo "QUERY ERROR: " . $e->getMessage();
+        exit();
+
     }
-}
+}   
 
 
 public function bind($param, $value, $type = null) {

@@ -20,10 +20,27 @@ class User {
     }
 
     public function register($name, $email, $password, $role = 'customer') {
+
+    try {
+
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
         $sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
-        return $this->db->query($sql, [$name, $email, $hashedPassword, $role]);
+
+        $result = $this->db->query(
+    $sql,
+    [$name, $email, $hashedPassword, $role]
+    );
+
+    var_dump($result);
+    exit();
+    } catch(PDOException $e) {
+
+        echo "DATABASE ERROR: " . $e->getMessage();
+        return false;
+
     }
+}
 
     public function login($email, $password) {
         $user = $this->findUserByEmail($email);

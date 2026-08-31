@@ -36,6 +36,13 @@ public function processRegister()
         echo "Passwords do not match";
         return;
     }
+    $existingUser = $this->userModel->findUserByEmail($email);
+
+    if($existingUser)
+{
+    echo "Email already registered. Please login.";
+    return;
+}
 
     // database saving code
    try {
@@ -64,12 +71,6 @@ catch(Exception $e)
 {
     echo $e->getMessage();
 }
-
-    // Encrypt password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-
-    echo "User data ready to save";
 }
 
     // Display Login view
