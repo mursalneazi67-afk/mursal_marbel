@@ -82,12 +82,6 @@ if (!empty($urlRoot) && strpos($requestUri, $urlRoot) === 0) {
 $requestUri = str_replace('/public', '', $requestUri);
 $requestUri = trim($requestUri, '/');
 
-echo "METHOD = " . $method;
-echo "<br>";
-echo "URI = " . $requestUri;
-exit();
-
-
 
 // Verify CSRF on POST requests
 if ($method === 'POST') {

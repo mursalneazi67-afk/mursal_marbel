@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="card-body p-4 p-md-5 bg-white">
-                        <form action="<?= URLROOT ?>/processRegister" method="POST">
+                    <form action="/register" method="POST">
                             <?= csrf_field(); ?>
                             <div class="mb-3">
                                 <label for="name" class="form-label fw-semibold">Full Name</label>
