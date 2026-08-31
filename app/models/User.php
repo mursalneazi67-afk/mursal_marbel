@@ -30,7 +30,10 @@ class User {
         $result = $this->db->query(
     $sql,
     [$name, $email, $hashedPassword, $role]
-    );
+);
+
+var_dump($result);
+exit();
 
     } catch(PDOException $e) {
 
