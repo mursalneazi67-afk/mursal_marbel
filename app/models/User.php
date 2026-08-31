@@ -32,8 +32,6 @@ class User {
     [$name, $email, $hashedPassword, $role]
     );
 
-    var_dump($result);
-    exit();
     } catch(PDOException $e) {
 
         echo "DATABASE ERROR: " . $e->getMessage();
